@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Application.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200823082956_InitialCreate")]
+    [Migration("20200823083746_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,6 @@ namespace Application.Infrastructure.Persistance.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("character varying(1000)")
                         .HasMaxLength(1000);
 

@@ -13,7 +13,7 @@ namespace Application.Infrastructure.Persistance.Configurations
                 .HasMaxLength(100);
 
             builder.Property(x => x.Content)
-                .IsRequired()
+                .IsRequired(false)
                 .HasMaxLength(1000);
         }
     }

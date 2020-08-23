@@ -23,7 +23,7 @@ namespace Application.Domain.Notes.Commands.CreateNoteCommand
         {
             var note = new Note(request.Title, DateTime.UtcNow);
             
-            if (string.IsNullOrWhiteSpace(request.Content))
+            if (!string.IsNullOrWhiteSpace(request.Content))
             {
                 note.Content = request.Content;
             }

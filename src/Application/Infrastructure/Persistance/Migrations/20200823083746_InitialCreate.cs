@@ -15,7 +15,7 @@ namespace Application.Infrastructure.Persistance.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(maxLength: 100, nullable: false),
-                    Content = table.Column<string>(maxLength: 1000, nullable: false),
+                    Content = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

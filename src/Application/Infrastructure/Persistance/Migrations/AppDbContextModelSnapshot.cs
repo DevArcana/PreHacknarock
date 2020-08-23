@@ -27,7 +27,6 @@ namespace Application.Infrastructure.Persistance.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Content")
-                        .IsRequired()
                         .HasColumnType("character varying(1000)")
                         .HasMaxLength(1000);
 
