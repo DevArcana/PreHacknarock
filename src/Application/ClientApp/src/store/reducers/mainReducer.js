@@ -14,5 +14,5 @@ const mainReducer = (state = initialStore, action) => {
       return state;
   }
 
-
 }
+
