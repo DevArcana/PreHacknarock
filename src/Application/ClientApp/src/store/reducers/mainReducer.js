@@ -1,10 +1,9 @@
 const initialStore = {
-    authenticated: false,
-}
+  authenticated: false,
+};
 
 const mainReducer = (state = initialStore, action) => {
- switch (action.type) {
-
+  switch (action.type) {
     case "SET_AUTHENTICATION":
       return {
         ...state,
@@ -13,6 +12,6 @@ const mainReducer = (state = initialStore, action) => {
     default:
       return state;
   }
+};
 
-}
-
+export default mainReducer;
