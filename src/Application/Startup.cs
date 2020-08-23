@@ -58,6 +58,7 @@ namespace Application
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -74,13 +75,6 @@ namespace Application
                 {
                     spa.UseReactDevelopmentServer("start");
                 }
-            });
-
-            app.UseAuthentication();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
