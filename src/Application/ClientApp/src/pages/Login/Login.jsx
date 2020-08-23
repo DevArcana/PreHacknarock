@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, TextField, Button, Link } from "@material-ui/core";
+import { Typography, Box, TextField, Link } from "@material-ui/core";
 import styled from "styled-components";
 
 export const Login = () => {
