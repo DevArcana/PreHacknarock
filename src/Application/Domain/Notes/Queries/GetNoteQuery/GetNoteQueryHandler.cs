@@ -26,6 +26,7 @@ namespace Application.Domain.Notes.Queries.GetNoteQuery
         public async Task<NoteDetails?> Handle(GetNoteQuery request, CancellationToken cancellationToken)
         {
             var note = await _context.Notes.AsNoTracking()
+                                     .Where(x => x.Id == request.Id)
                                      .ProjectTo<NoteDetails?>(_mapper.ConfigurationProvider)
                                      .FirstAsync(cancellationToken);
 
