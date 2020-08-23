@@ -7,10 +7,8 @@ export const Note = () => {
   const { noteId } = useParams();
   return <div>
     <NavBar></NavBar>
-    Note {noteId}
-    <br></br>
-    <TextareaAutosize  style={{border: "none", borderColor: "Transparent",  outline: "none", width: "100%"}} aria-label="empty textarea" placeholder="Napisz nową notatkę" />
+      Note {noteId}
+      <br></br>
+      <TextareaAutosize  style={{border: "none", borderColor: "Transparent",  outline: "none", width: "100%"}} aria-label="empty textarea" placeholder="Napisz nową notatkę" />
     </div>;
-
-
 };
