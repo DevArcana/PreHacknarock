@@ -1,9 +1,16 @@
 const initialStore = {
-  authenticated: false,
-};
+    authenticated: false,
+    editable: false
+}
 
 const mainReducer = (state = initialStore, action) => {
-  switch (action.type) {
+ switch (action.type) {
+
+    case "SET_EDITABLE":
+        return {
+          ...state,
+          editable: action.editable,
+        };
     case "SET_AUTHENTICATION":
       return {
         ...state,
@@ -12,6 +19,5 @@ const mainReducer = (state = initialStore, action) => {
     default:
       return state;
   }
-};
-
-export default mainReducer;
+}
+export default mainReducer
