@@ -1,0 +1,13 @@
+.noteList > button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #6FB1FF;
+    display: "inline";
+    margin-top: 5px;
+    font-size: 16px;
+    float: left;
+}
