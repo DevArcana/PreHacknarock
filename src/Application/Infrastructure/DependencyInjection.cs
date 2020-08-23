@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace Application.Infrastructure
 {
@@ -17,7 +18,7 @@ namespace Application.Infrastructure
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                var connectionString = Environment.GetEnvironmentVariable("DATABASE_URL") ??
+                var connectionString = GetHerokuDBConnection() ??
                                        configuration.GetConnectionString("Database");
 
                 options.UseNpgsql(connectionString);
@@ -29,6 +30,30 @@ namespace Application.Infrastructure
             dbContext.Database.Migrate();
 
             return services;
+        }
+        
+        private static string? GetHerokuDBConnection()
+        {
+            var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            if (databaseUrl == null)
+            {
+                return null;
+            }
+            
+            var databaseUri = new Uri(databaseUrl);
+            var userInfo = databaseUri.UserInfo.Split(':');
+
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = databaseUri.Host,
+                Port = databaseUri.Port,
+                Username = userInfo[0],
+                Password = userInfo[1],
+                Database = databaseUri.LocalPath.TrimStart('/')
+            };
+
+            return builder.ToString();
         }
     }
 }
