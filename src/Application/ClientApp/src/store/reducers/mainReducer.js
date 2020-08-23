@@ -13,6 +13,5 @@ const mainReducer = (state = initialStore, action) => {
     default:
       return state;
   }
-
-
 }
+export default mainReducer
