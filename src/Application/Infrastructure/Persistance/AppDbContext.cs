@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Application.Domain.Notes;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Infrastructure.Persistance
@@ -15,5 +16,7 @@ namespace Application.Infrastructure.Persistance
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
+        public DbSet<Note> Notes => Set<Note>();
     }
 }
