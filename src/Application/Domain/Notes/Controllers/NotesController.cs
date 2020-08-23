@@ -44,7 +44,7 @@ namespace Application.Domain.Notes.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetNote([FromBody] int id)
+        public async Task<IActionResult> GetNote(int id)
         {
             var query = new GetNoteQuery(id);
 
