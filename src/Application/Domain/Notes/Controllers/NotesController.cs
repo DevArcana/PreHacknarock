@@ -30,7 +30,7 @@ namespace Application.Domain.Notes.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> ListNotes([FromBody] ListNotesQuery query)
+        public async Task<IActionResult> ListNotes([FromQuery] ListNotesQuery query)
         {
             try
             {
