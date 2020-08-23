@@ -4,19 +4,30 @@ import './NavBar.css'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom";
 import {setEditable} from '../../store/actions';
+import { useHistory } from "react-router-dom";
+
 export const NavBar = (props) => {
+    let history = useHistory();
 
     const handleClick = () => {
-        props.setEditable(!props.editable);
+        setEditable(!props.editable);
+    }
+    const handleRemove = () => {
+        history.push('/')
     }
 
     return (
-        <div class="navbar">
-            <Link style={{display: "inline"}} to={props.previousPage}>
-                <ArrowBackIosIcon to={props.previousPage}></ArrowBackIosIcon>
+        <div className="navbar">
+            <Link style={{display: "inline"}} to={"/"}>
+                {props.view!=="notelist"?
+                    <ArrowBackIosIcon ></ArrowBackIosIcon>:<div></div>
+                }
             </Link>
             <div>{props.title}</div>
-            <button onClick={handleClick} style={{float: "right"}}>EDIT</button>
+            {props.view==="notelist"?
+            <button onClick={handleClick} style={{float: "right"}}>EDIT</button>:
+            <button onClick={handleRemove} style={{float: "right", color: "red"}}>REMOVE</button>
+        }
         </div>
     )
 }

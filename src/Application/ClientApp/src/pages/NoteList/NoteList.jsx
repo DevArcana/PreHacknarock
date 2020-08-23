@@ -10,7 +10,7 @@ export const NoteList = () => {
   ];
   return (
     <>
-      <NavBar title="Notatki"></NavBar>
+      <NavBar view="notelist" title="Notatki"></NavBar>
       {notes.map((note) => (
         <div>
           <NoteItem note={note} />
