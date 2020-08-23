@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Application.Common;
 using Application.Domain.Notes.Commands.CreateNoteCommand;
+using Application.Domain.Notes.Commands.UpdateNoteCommand;
 using Application.Domain.Notes.Queries.GetNoteQuery;
 using Application.Domain.Notes.Queries.ListNotesQuery;
 using MediatR;
@@ -51,6 +52,21 @@ namespace Application.Domain.Notes.Controllers
             try
             {
                 return Ok(await _mediator.Send(query));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateNote(int id, [FromBody] UpdateNoteCommand command)
+        {
+            command.Id = id;
+
+            try
+            {
+                return Ok(await _mediator.Send(command));
             }
             catch
             {
