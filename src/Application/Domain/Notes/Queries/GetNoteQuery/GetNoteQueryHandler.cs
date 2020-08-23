@@ -28,7 +28,7 @@ namespace Application.Domain.Notes.Queries.GetNoteQuery
             var note = await _context.Notes.AsNoTracking()
                                      .Where(x => x.Id == request.Id)
                                      .ProjectTo<NoteDetails?>(_mapper.ConfigurationProvider)
-                                     .FirstAsync(cancellationToken);
+                                     .FirstOrDefaultAsync(cancellationToken);
 
             return note;
         }
