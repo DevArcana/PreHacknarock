@@ -10,7 +10,7 @@ import mainReducer from "./store/reducers/mainReducer";
 import Auth0ProviderWithHistory from "./authentication/auth0-provider-with-history";
 
 const store = createStore(mainReducer);
-require("dotenv").config();
+require('dotenv').config();
 
 ReactDOM.render(
   <Router>
