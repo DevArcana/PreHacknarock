@@ -64,7 +64,7 @@ export const NoteList = () => {
           <StyledButton onClick={addNewNote}>Dodaj notatkę</StyledButton>
         </CreateInputBox>
         {notes?.map((note, i) => (
-          <NoteItem note={note} />
+          <NoteItem note={note} key={i} />
         ))}
       </Container>
     </>
