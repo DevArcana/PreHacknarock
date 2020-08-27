@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
+import {Typography, TextField} from "@material-ui/core";
+import { useAuth0 } from "@auth0/auth0-react";
 import { NoteItem } from "./NoteItem";
+
 import { NavBar } from "../../components/NavBar/NavBar";
 import './NoteList.css'
-import { useHistory } from "react-router-dom";
-import TextField from '@material-ui/core/TextField';
-
 
 export const NoteList = () => {
-
-  let history = useHistory();
+  const history = useHistory();
+  const {user} = useAuth0();
 
   const [notes, setNotes] = React.useState([
     { text: "Note1", date: "Date1" },
@@ -24,7 +25,7 @@ export const NoteList = () => {
       );
       setNotes(result.data.results);
     };
- 
+
     fetchData();
   }, []);
 
@@ -43,22 +44,22 @@ export const NoteList = () => {
 
   }
 
- 
-
   const handleTextChange = (e) => {
     setNewNoteTitle(e.target.value)
   }
+
   return (
     <>
-      <NavBar view="notelist" title="Notatki"></NavBar>
-      
+      <Typography>Logged as: {user.name}</Typography>
+      <NavBar view="notelist" title="Notatki"/>
+
       <div className="noteList">
         <TextField onChange={handleTextChange} value={newNoteTitle} style={{float: "left"}} id="standard-basic" label="Tytuł" />
-        <br></br>
+        <br/>
         <button onClick={addNewNote}>Dodaj notatkę</button>
-        <br></br>
-        <br></br>
-        <br></br>
+        <br/>
+        <br/>
+        <br/>
 
         {notes.map((note, i) => (
           <div key={i}>

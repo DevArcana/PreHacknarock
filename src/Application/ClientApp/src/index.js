@@ -1,22 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import mainReducer from "./store/reducers/mainReducer";
+import Auth0ProviderWithHistory from "./authentication/auth0-provider-with-history";
 
-import { createStore } from "redux";
-
-import mainReducer from './store/reducers/mainReducer'
-import { Provider } from 'react-redux';
-
-const store = createStore(mainReducer)
-
+const store = createStore(mainReducer);
+require("dotenv").config();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Router>
+    <Auth0ProviderWithHistory>
+      <React.StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </React.StrictMode>
+    </Auth0ProviderWithHistory>
+  </Router>,
   document.getElementById("root")
 );
 

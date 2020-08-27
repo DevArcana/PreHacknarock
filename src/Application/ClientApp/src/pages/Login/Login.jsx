@@ -1,20 +1,24 @@
 import React from "react";
-import { Typography, Box, TextField, Link } from "@material-ui/core";
+import { Typography, Box, Button } from "@material-ui/core";
 import styled from "styled-components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Login = () => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <Box m={10}>
       <Box align={"center"}>
-        <TitleTypography variant="h1">NOTATKI</TitleTypography>
+        <TitleTypography variant="h1">NOTES</TitleTypography>
       </Box>
-      <CredentialsBox>
-        <InputField id="standard-basic" label="username" />
-        <InputField id="standard-basic" label="password" />
-      </CredentialsBox>
       <ButtonBox>
-        <LoginButton>
-          <Typography variant="h5">Login</Typography>
+        <LoginButton
+          onClick={() => loginWithRedirect()}
+          color="primary"
+          variant="contained"
+          size="large"
+        >
+          Login
         </LoginButton>
       </ButtonBox>
     </Box>
@@ -24,25 +28,12 @@ export const Login = () => {
 const TitleTypography = styled(Typography)`
   color: #7c98b3;
 `;
-const CredentialsBox = styled(Box)`
-  margin-top: 70px;
-`;
-
-const InputField = styled(TextField)`
-  width: 100%;
-  height: 30px;
-  margin-bottom: 50px;
-  color: #dbdbdb;
-  font-size: 16;
-`;
 
 const ButtonBox = styled(Box)`
   display: flex;
   justify-content: center;
 `;
 
-const LoginButton = styled(Link)`
-  color: #7aa7ec;
-  border-bottom-style: none;
-  text-decoration: none !important;
+const LoginButton = styled(Button)`
+  margin-top: 400px;
 `;
