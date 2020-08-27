@@ -6,24 +6,31 @@ import { NoteList } from "./pages/NoteList/NoteList";
 import { Login } from "./pages/Login/Login";
 import { Note } from "./pages/Note/Note";
 import { Loading } from "./pages/Loading/Loading";
-import Error from "./pages/Error/Error"
+import Error from "./pages/Error/Error";
 import PrivateRoute from "./authentication/private-route";
 
 function App() {
   const { isLoading, error, isAuthenticated } = useAuth0();
 
-  if(error) {
-      return <Error error={error}/>
+  if (error) {
+    return <Error error={error} />;
   }
   if (isLoading) {
     return <Loading />;
   }
-
   return (
     <Switch>
       <Route path="/login" component={Login} />
-      <PrivateRoute path="/note/:noteId" component={Note} isAuthenticated={isAuthenticated}/>
-      <PrivateRoute path="/" component={NoteList} isAuthenticated={isAuthenticated}/>
+      <PrivateRoute
+        path="/note/:noteId"
+        component={Note}
+        isAuthenticated={isAuthenticated}
+      />
+      <PrivateRoute
+        path="/"
+        component={NoteList}
+        isAuthenticated={isAuthenticated}
+      />
     </Switch>
   );
 }

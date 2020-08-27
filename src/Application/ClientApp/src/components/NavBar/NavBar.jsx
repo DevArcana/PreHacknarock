@@ -1,10 +1,9 @@
 import React from 'react'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import './NavBar.css'
-import { connect } from 'react-redux'
-import { Link } from "react-router-dom";
+import {connect} from 'react-redux'
+import {Link, useHistory} from "react-router-dom";
 import {setEditable} from '../../store/actions';
-import { useHistory } from "react-router-dom";
 
 export const NavBar = (props) => {
     let history = useHistory();
@@ -19,15 +18,15 @@ export const NavBar = (props) => {
     return (
         <div className="navbar">
             <Link style={{display: "inline"}} to={"/"}>
-                {props.view!=="notelist"?
-                    <ArrowBackIosIcon ></ArrowBackIosIcon>:<div></div>
+                {props.view !== "notelist" ?
+                    <ArrowBackIosIcon/> : <div/>
                 }
             </Link>
             <div>{props.title}</div>
-            {props.view==="notelist"?
-            <button onClick={handleClick} style={{float: "right"}}>EDIT</button>:
-            <button onClick={handleRemove} style={{float: "right", color: "red"}}>REMOVE</button>
-        }
+            {props.view === "notelist" ?
+                <button onClick={handleClick} style={{float: "right"}}>EDIT</button> :
+                <button onClick={handleRemove} style={{float: "right", color: "red"}}>REMOVE</button>
+            }
         </div>
     )
 }
