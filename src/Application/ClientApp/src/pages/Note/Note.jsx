@@ -19,6 +19,7 @@ export const Note = () => {
     };
 
     fetchData();
+    //eslint-disable-next-line
   }, []);
 
   return (
