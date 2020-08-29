@@ -1,4 +1,5 @@
 using Application.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -25,6 +26,17 @@ namespace Application
             services.AddSpaStaticFiles(options => options.RootPath = "ClientApp/build");
 
             services.AddInfrastructure(Configuration);
+
+            services.AddAuthentication(options =>
+                     {
+                         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                     })
+                    .AddJwtBearer(options =>
+                     {
+                         options.Authority = "https://broad-sun-6187.eu.auth0.com/";
+                         options.Audience = "http://pre-hacknarock.herokuapp.com/api/";
+                     });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +51,7 @@ namespace Application
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
